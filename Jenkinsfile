@@ -10,11 +10,23 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Ant2965/achauhan.git'
             }
         }
+
+        stage('UNIT TESTING') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+
+        stage('INTEGRATION TESTING') {
+            steps {
+                sh 'mvn verify -DskipUnitTests'
+            }
+        }
     }
 }
 
 
-pipeline {
+/*pipeline {
     agent any
 
     stages {
